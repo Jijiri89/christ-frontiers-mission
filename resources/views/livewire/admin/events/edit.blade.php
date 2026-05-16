@@ -1,8 +1,9 @@
-@php
+
+<div class="max-w-5xl px-4 py-10 mx-auto">
+    @php
     use Illuminate\Support\Facades\Storage;
 @endphp
 
-<div class="max-w-5xl px-4 py-10 mx-auto">
 
     <!-- Success -->
     @if(session('success'))
