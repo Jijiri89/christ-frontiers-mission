@@ -114,6 +114,36 @@
                     <div class="absolute bottom-0 left-4 right-4 h-0.5 bg-yellow-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 {{ request()->is('contact') ? 'scale-x-100' : '' }}"></div>
 
                 </a>
+                <!-- Login -->
+                <a href="/login"
+                   wire:navigate
+                   class="relative px-4 py-2 font-medium text-white transition-all duration-300 rounded-lg hover:bg-white/10 group">
+
+                    <span class="{{ request()->is('login') ? 'text-yellow-300 font-semibold' : '' }}">
+
+                        Login
+
+                    </span>
+
+                    <div class="absolute bottom-0 left-4 right-4 h-0.5 bg-yellow-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 {{ request()->is('contact') ? 'scale-x-100' : '' }}"></div>
+
+                </a>
+
+
+                  <!-- Register -->
+                <a href="/register"
+                   wire:navigate
+                   class="relative px-4 py-2 font-medium text-white transition-all duration-300 rounded-lg hover:bg-white/10 group">
+
+                    <span class="{{ request()->is('register') ? 'text-yellow-300 font-semibold' : '' }}">
+
+                        Register
+
+                    </span>
+
+                    <div class="absolute bottom-0 left-4 right-4 h-0.5 bg-yellow-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 {{ request()->is('contact') ? 'scale-x-100' : '' }}"></div>
+
+                </a>
 
             </div>
 
@@ -214,6 +244,32 @@
                        class="flex items-center px-4 py-3 text-white hover:bg-white/10">
 
                         Contact Us
+
+                    </a>
+
+                </li>
+
+                  <!-- Contact -->
+                <li>
+
+                    <a href="/login"
+                       wire:navigate
+                       class="flex items-center px-4 py-3 text-white hover:bg-white/10">
+
+                        Login
+
+                    </a>
+
+                </li>
+                
+                  <!-- Contact -->
+                <li>
+
+                    <a href="/register"
+                       wire:navigate
+                       class="flex items-center px-4 py-3 text-white hover:bg-white/10">
+
+                        Register
 
                     </a>
 
