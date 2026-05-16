@@ -1,6 +1,6 @@
 <div>
  
-    <livewire:home.hero />
+   
 
     <livewire:home.about />
 
