@@ -1,3 +1,5 @@
+<div>
+
 <?php
 
 use App\Livewire\Actions\Logout;
@@ -91,7 +93,6 @@ new class extends Component
 
                         <!-- Desktop Links -->
                         <div class="items-center hidden space-x-2 sm:flex ms-10">
-                           
 
                             <!-- Dashboard -->
                             <x-nav-link
@@ -105,17 +106,17 @@ new class extends Component
 
                             </x-nav-link>
 
-                             <!-- Users -->
-<x-nav-link
-    :href="route('dashboard.users')"
-    :active="request()->routeIs('dashboard.users*')"
-    wire:navigate
-    class="text-white hover:text-yellow-300"
->
+                            <!-- Users -->
+                            <x-nav-link
+                                :href="route('dashboard.users')"
+                                :active="request()->routeIs('dashboard.users*')"
+                                wire:navigate
+                                class="text-white hover:text-yellow-300"
+                            >
 
-    Users
+                                Users
 
-</x-nav-link>
+                            </x-nav-link>
 
                             <!-- Homepage -->
                             <x-nav-link
@@ -320,6 +321,17 @@ new class extends Component
 
                     </x-responsive-nav-link>
 
+                    <!-- Users -->
+                    <x-responsive-nav-link
+                        :href="route('dashboard.users')"
+                        :active="request()->routeIs('dashboard.users*')"
+                        wire:navigate
+                    >
+
+                        Users
+
+                    </x-responsive-nav-link>
+
                     <!-- Homepage -->
                     <x-responsive-nav-link
                         :href="route('dashboard.homepage-sections')"
@@ -420,3 +432,5 @@ new class extends Component
     </div>
 
 </nav>
+
+</div>
