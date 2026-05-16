@@ -1,7 +1,6 @@
 <div>
  
-    <livewire:home.hero />
-
+   @livewire('home.hero')
    
      
 </div>
