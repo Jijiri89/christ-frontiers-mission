@@ -1,4 +1,3 @@
-<div>
 
 <?php
 
@@ -433,4 +432,3 @@ new class extends Component
 
 </nav>
 
-</div>
