@@ -1,5 +1,4 @@
 <div>
-<livewire:home.partnership />
-     <livewire:home.leadership />
+hello
      
 </div>
