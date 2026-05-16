@@ -3,7 +3,9 @@
 @endphp
 
 <x-app-layout>
+@auth
 
+    @if(auth()->user()->is_admin)
     <x-slot name="header">
 
         <div class="relative overflow-hidden shadow-2xl rounded-3xl bg-gradient-to-r from-violet-700 via-violet-800 to-violet-900">
@@ -120,7 +122,7 @@
             </div>
 
             <!-- Quick Actions -->
-            <div class="grid gap-8 lg:grid-cols-3">
+            <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
 
                 <!-- Homepage Management -->
                 <div class="p-10 bg-white shadow-xl rounded-3xl">
@@ -225,6 +227,35 @@
 
                 </div>
 
+                <!-- Settings Management -->
+                <div class="p-10 bg-white shadow-xl rounded-3xl">
+
+                    <h3 class="text-3xl font-extrabold text-violet-900">
+
+                        Website Settings
+
+                    </h3>
+
+                    <p class="mt-4 text-lg text-gray-600">
+
+                        Manage logo, church name, contact details, branding, and website identity.
+
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mt-10">
+
+                        <a href="{{ route('dashboard.settings') }}"
+                           wire:navigate
+                           class="inline-flex items-center px-6 py-4 font-bold text-white transition rounded-2xl bg-violet-700 hover:bg-violet-800">
+
+                            Open Settings
+
+                        </a>
+
+                    </div>
+
+                </div>
+
             </div>
 
             <!-- Recent Leaders -->
@@ -279,6 +310,16 @@
 
                                 </p>
 
+                                <div class="mt-4">
+
+                                    <span class="inline-flex items-center px-4 py-2 text-sm font-bold rounded-full bg-violet-100 text-violet-700">
+
+                                        {{ $leader->ministry }}
+
+                                    </span>
+
+                                </div>
+
                             </div>
 
                         </div>
@@ -292,5 +333,32 @@
         </div>
 
     </div>
+
+
+        @else
+
+        <div class="max-w-4xl px-4 py-20 mx-auto text-center">
+
+            <div class="p-10 bg-white shadow-2xl rounded-3xl">
+
+                <h1 class="text-4xl font-extrabold text-red-600">
+
+                    Access Denied
+
+                </h1>
+
+                <p class="mt-4 text-lg text-gray-600">
+
+                    You do not have permission to access this dashboard.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    @endif
+
+@endauth
 
 </x-app-layout>

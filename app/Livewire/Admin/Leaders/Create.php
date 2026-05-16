@@ -13,9 +13,15 @@ class Create extends Component
     use WithFileUploads;
 
     public $name;
+
+    public $ministry;
+
     public $position;
+
     public $bio;
+
     public $sort_order = 0;
+
     public $is_active = true;
 
     public $newImage;
@@ -25,6 +31,8 @@ class Create extends Component
         $this->validate([
 
             'name' => 'required|string|max:255',
+
+            'ministry' => 'required|string|max:255',
 
             'position' => 'required|string|max:255',
 
@@ -38,6 +46,12 @@ class Create extends Component
 
         $image = null;
 
+        /*
+        |--------------------------------------------------------------------------
+        | Upload Image
+        |--------------------------------------------------------------------------
+        */
+
         if ($this->newImage) {
 
             $image = $this->newImage->store(
@@ -46,9 +60,17 @@ class Create extends Component
             );
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | Create Leader
+        |--------------------------------------------------------------------------
+        */
+
         Leader::create([
 
             'name' => $this->name,
+
+            'ministry' => $this->ministry,
 
             'position' => $this->position,
 

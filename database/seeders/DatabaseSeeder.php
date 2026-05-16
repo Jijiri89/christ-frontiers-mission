@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
         ]);
         // User::factory(10)->create();
 
-        
+        \App\Models\Setting::firstOrCreate([
+    'id' => 1,
+], [
+    'site_name' => 'Christ Frontiers Mission International',
+]);
     }
 }

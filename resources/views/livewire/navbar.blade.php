@@ -5,29 +5,53 @@
 
         <div class="container flex items-center justify-between h-16 px-4 mx-auto max-w-7xl">
 
-            <!-- Logo -->
-            <a href="/" wire:navigate class="flex items-center space-x-3">
+          <!-- Logo -->
+<a href="/" wire:navigate class="flex items-center space-x-3">
 
-                <x-application-logo class="w-10 h-10" />
+    @php
+        use Illuminate\Support\Facades\Storage;
 
-                <div class="hidden md:block">
+        $settings = \App\Models\Setting::first();
+    @endphp
 
-                    <div class="text-lg font-bold text-white">
+    <!-- Dynamic Logo -->
+    @if($settings?->logo)
 
-                        CHRIST FRONTIERS
+        <img
+            src="{{ Storage::url($settings->logo) }}"
+            alt="{{ $settings->site_name }}"
+            class="object-contain w-12 h-12"
+        >
 
-                    </div>
+    @else
 
-                    <div class="text-xs font-medium tracking-wider text-yellow-300">
+        <!-- Fallback -->
+        <div class="flex items-center justify-center w-12 h-12 text-lg font-extrabold text-white rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500">
 
-                        MISSION INTERNATIONAL
+            CF
 
-                    </div>
+        </div>
 
-                </div>
+    @endif
 
-            </a>
+    <!-- Site Name -->
+    <div class="hidden md:block">
 
+        <div class="text-lg font-bold text-white">
+
+            {{ $settings?->site_name ?? 'Christ Frontiers' }}
+
+        </div>
+
+        <div class="text-xs font-medium tracking-wider text-yellow-300">
+
+            Mission International
+
+        </div>
+
+    </div>
+
+</a>
             <!-- Desktop Menu -->
             <div class="items-center hidden space-x-1 md:flex">
 

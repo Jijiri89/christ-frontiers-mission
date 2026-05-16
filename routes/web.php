@@ -36,6 +36,14 @@ use App\Livewire\Home\Events;
 
 /*
 |--------------------------------------------------------------------------
+| Settings
+|--------------------------------------------------------------------------
+*/
+
+use App\Livewire\Admin\Settings\Edit as SettingsEdit;
+
+/*
+|--------------------------------------------------------------------------
 | Public Website Routes
 |--------------------------------------------------------------------------
 */
@@ -55,6 +63,7 @@ Route::get('/events', Events::class)
 Route::middleware([
     'auth',
     'verified',
+    'admin',
 ])->prefix('dashboard')->group(function () {
 
     /*
@@ -107,6 +116,18 @@ Route::middleware([
 
     Route::get('/events/{event}/edit', EventsEdit::class)
         ->name('dashboard.events.edit');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Settings
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/settings', SettingsEdit::class)
+        ->name('dashboard.settings');
+
+        Route::get('/users', \App\Livewire\Admin\Users\Index::class)
+    ->name('dashboard.users');
 
 });
 

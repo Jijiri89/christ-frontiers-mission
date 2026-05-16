@@ -36,52 +36,140 @@ new class extends Component
                     class="flex items-center space-x-3"
                 >
 
-                    <div class="flex items-center justify-center bg-yellow-400 rounded-full shadow-lg w-11 h-11">
+                    @php
+                        use Illuminate\Support\Facades\Storage;
 
-                        <x-application-logo class="fill-current w-7 h-7 text-violet-900" />
+                        $settings = \App\Models\Setting::first();
+                    @endphp
 
-                    </div>
+                    <!-- Dynamic Logo -->
+                    @if($settings?->logo)
 
+                        <img
+                            src="{{ Storage::url($settings->logo) }}"
+                            alt="{{ $settings->site_name }}"
+                            class="object-contain w-12 h-12"
+                        >
+
+                    @else
+
+                        <!-- Fallback -->
+                        <div class="flex items-center justify-center bg-yellow-400 rounded-full shadow-lg w-11 h-11">
+
+                            <span class="text-lg font-extrabold text-violet-900">
+
+                                CF
+
+                            </span>
+
+                        </div>
+
+                    @endif
+
+                    <!-- Site Name -->
                     <div class="hidden sm:block">
 
                         <h1 class="text-lg font-extrabold tracking-tight text-white">
-                            Christ Frontiers
+
+                            {{ $settings?->site_name ?? 'Christ Frontiers' }}
+
                         </h1>
 
                         <p class="text-xs font-semibold tracking-[0.2em] uppercase text-yellow-300">
+
                             Mission International
+
                         </p>
 
                     </div>
 
                 </a>
 
-                <!-- Desktop Links -->
-                <div class="items-center hidden space-x-2 sm:flex ms-10">
+                @auth
 
-                    <x-nav-link
-                        :href="route('dashboard')"
-                        :active="request()->routeIs('dashboard')"
-                        wire:navigate
-                        class="text-white hover:text-yellow-300"
-                    >
+                    @if(auth()->user()->is_admin)
 
-                        Dashboard
+                        <!-- Desktop Links -->
+                        <div class="items-center hidden space-x-2 sm:flex ms-10">
+                           
 
-                    </x-nav-link>
+                            <!-- Dashboard -->
+                            <x-nav-link
+                                :href="route('dashboard')"
+                                :active="request()->routeIs('dashboard')"
+                                wire:navigate
+                                class="text-white hover:text-yellow-300"
+                            >
 
-                    <x-nav-link
-                        :href="route('dashboard.homepage-sections')"
-                        :active="request()->routeIs('dashboard.homepage-sections*')"
-                        wire:navigate
-                        class="text-white hover:text-yellow-300"
-                    >
+                                Dashboard
 
-                        Homepage Sections
+                            </x-nav-link>
 
-                    </x-nav-link>
+                             <!-- Users -->
+<x-nav-link
+    :href="route('dashboard.users')"
+    :active="request()->routeIs('dashboard.users*')"
+    wire:navigate
+    class="text-white hover:text-yellow-300"
+>
 
-                </div>
+    Users
+
+</x-nav-link>
+
+                            <!-- Homepage -->
+                            <x-nav-link
+                                :href="route('dashboard.homepage-sections')"
+                                :active="request()->routeIs('dashboard.homepage-sections*')"
+                                wire:navigate
+                                class="text-white hover:text-yellow-300"
+                            >
+
+                                Homepage
+
+                            </x-nav-link>
+
+                            <!-- Leadership -->
+                            <x-nav-link
+                                :href="route('dashboard.leaders')"
+                                :active="request()->routeIs('dashboard.leaders*')"
+                                wire:navigate
+                                class="text-white hover:text-yellow-300"
+                            >
+
+                                Leadership
+
+                            </x-nav-link>
+
+                            <!-- Events -->
+                            <x-nav-link
+                                :href="route('dashboard.events')"
+                                :active="request()->routeIs('dashboard.events*')"
+                                wire:navigate
+                                class="text-white hover:text-yellow-300"
+                            >
+
+                                Events
+
+                            </x-nav-link>
+
+                            <!-- Settings -->
+                            <x-nav-link
+                                :href="route('dashboard.settings')"
+                                :active="request()->routeIs('dashboard.settings*')"
+                                wire:navigate
+                                class="text-white hover:text-yellow-300"
+                            >
+
+                                Settings
+
+                            </x-nav-link>
+
+                        </div>
+
+                    @endif
+
+                @endauth
 
             </div>
 
@@ -93,7 +181,7 @@ new class extends Component
                     <x-slot name="trigger">
 
                         <button
-                            class="inline-flex items-center px-4 py-2 space-x-3 text-sm font-medium text-white transition border rounded-xl bg-white/10 border-white/10 hover:bg-white/20 focus:outline-none"
+                            class="inline-flex items-center px-4 py-2 space-x-3 text-sm font-medium text-white transition border rounded-2xl bg-white/10 border-white/10 hover:bg-white/20 focus:outline-none"
                         >
 
                             <div
@@ -124,11 +212,15 @@ new class extends Component
                         <div class="px-4 py-3 border-b border-gray-100">
 
                             <p class="text-sm font-semibold text-gray-900">
+
                                 {{ auth()->user()->name }}
+
                             </p>
 
                             <p class="mt-1 text-xs text-gray-500">
+
                                 {{ auth()->user()->email }}
+
                             </p>
 
                         </div>
@@ -166,7 +258,7 @@ new class extends Component
 
                 <button
                     @click="open = ! open"
-                    class="inline-flex items-center justify-center p-2 text-white transition rounded-lg hover:bg-white/10"
+                    class="inline-flex items-center justify-center p-2 text-white transition rounded-xl hover:bg-white/10"
                 >
 
                     <svg
@@ -207,45 +299,89 @@ new class extends Component
     <!-- Mobile Menu -->
     <div
         :class="{'block': open, 'hidden': ! open}"
-        class="hidden border-t sm:hidden border-violet-800/30 bg-violet-950"
+        class="hidden border-t shadow-2xl sm:hidden border-violet-800/30 bg-gradient-to-b from-violet-900 to-violet-950"
     >
 
-        <div class="px-4 py-4 space-y-2">
+        @auth
 
-            <x-responsive-nav-link
-                :href="route('dashboard')"
-                :active="request()->routeIs('dashboard')"
-                wire:navigate
-            >
+            @if(auth()->user()->is_admin)
 
-                Dashboard
+                <!-- Mobile Links -->
+                <div class="px-4 py-5 space-y-1">
 
-            </x-responsive-nav-link>
+                    <!-- Dashboard -->
+                    <x-responsive-nav-link
+                        :href="route('dashboard')"
+                        :active="request()->routeIs('dashboard')"
+                        wire:navigate
+                    >
 
-            <x-responsive-nav-link
-                :href="route('dashboard.homepage-sections')"
-                :active="request()->routeIs('dashboard.homepage-sections*')"
-                wire:navigate
-            >
+                        Dashboard
 
-                Homepage Sections
+                    </x-responsive-nav-link>
 
-            </x-responsive-nav-link>
+                    <!-- Homepage -->
+                    <x-responsive-nav-link
+                        :href="route('dashboard.homepage-sections')"
+                        :active="request()->routeIs('dashboard.homepage-sections*')"
+                        wire:navigate
+                    >
 
-        </div>
+                        Homepage
+
+                    </x-responsive-nav-link>
+
+                    <!-- Leadership -->
+                    <x-responsive-nav-link
+                        :href="route('dashboard.leaders')"
+                        :active="request()->routeIs('dashboard.leaders*')"
+                        wire:navigate
+                    >
+
+                        Leadership
+
+                    </x-responsive-nav-link>
+
+                    <!-- Events -->
+                    <x-responsive-nav-link
+                        :href="route('dashboard.events')"
+                        :active="request()->routeIs('dashboard.events*')"
+                        wire:navigate
+                    >
+
+                        Events
+
+                    </x-responsive-nav-link>
+
+                    <!-- Settings -->
+                    <x-responsive-nav-link
+                        :href="route('dashboard.settings')"
+                        :active="request()->routeIs('dashboard.settings*')"
+                        wire:navigate
+                    >
+
+                        Settings
+
+                    </x-responsive-nav-link>
+
+                </div>
+
+            @endif
+
+        @endauth
 
         <!-- Mobile User -->
-        <div class="px-4 py-4 border-t border-violet-800/30">
+        <div class="px-4 py-6 mt-4 border-t border-violet-700/40 bg-white/5">
 
-            <div class="mb-4">
+            <div class="mb-5">
 
                 <div
-                    class="text-base font-semibold text-white"
+                    class="text-base font-bold tracking-wide text-white"
                     x-data="{{ json_encode(['name' => auth()->user()->name]) }}"
                     x-text="name"
                 ></div>
 
-                <div class="text-sm text-violet-300">
+                <div class="mt-1 text-sm text-violet-300">
 
                     {{ auth()->user()->email }}
 

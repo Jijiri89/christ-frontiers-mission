@@ -52,87 +52,128 @@
 
         </div>
 
-        <!-- Leaders Grid -->
-        <div class="grid gap-10 mt-20 md:grid-cols-2 lg:grid-cols-3">
+       <!-- Ministry Groups -->
+<div class="mt-20 space-y-24">
 
-            @foreach($leaders as $leader)
+    @foreach([
+        'National Presbytery',
+        'Women Ministry',
+        'Children Ministry',
+        'Youth Ministry',
+    ] as $ministry)
 
-                <div class="overflow-hidden transition-all duration-500 bg-white border border-gray-100 shadow-xl group rounded-3xl hover:-translate-y-2 hover:shadow-2xl">
+        @php
+            $groupedLeaders = $leaders->where('ministry', $ministry);
+        @endphp
 
-                    <!-- Leader Image -->
-                    <div class="relative overflow-hidden">
+        @if($groupedLeaders->count())
 
-                        @if($leader->image)
+            <!-- Ministry Header -->
+            <div>
 
-                            <img
-                                src="{{ Storage::url($leader->image) }}"
-                                alt="{{ $leader->name }}"
-                                class="object-cover object-top w-full h-[500px] transition duration-700 group-hover:scale-105"
-                            >
+                <div class="flex items-center mb-10">
 
-                        @else
+                    <div class="h-1 mr-4 rounded-full w-14 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
 
-                            <div class="flex items-center justify-center h-[500px] bg-gradient-to-br from-violet-200 to-violet-100">
+                    <h3 class="text-3xl font-extrabold text-violet-900 md:text-4xl">
 
-                                <svg
-                                    class="w-24 h-24 text-violet-400"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                        {{ $ministry }}
 
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1.5"
-                                        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"
-                                    />
-
-                                </svg>
-
-                            </div>
-
-                        @endif
-
-                        <!-- Soft Overlay -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent"></div>
-
-                        <!-- Position Badge -->
-                        <div class="absolute bottom-5 left-5">
-
-                            <span class="inline-flex items-center px-5 py-2 text-sm font-bold tracking-wide text-white rounded-full shadow-lg bg-violet-700/95 backdrop-blur-sm">
-
-                                {{ $leader->position }}
-
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <!-- Content -->
-                    <div class="flex flex-col p-8 min-h-[220px]">
-
-                        <h3 class="text-3xl font-extrabold tracking-tight text-gray-900">
-
-                            {{ $leader->name }}
-
-                        </h3>
-
-                        @if($leader->bio)
-
-                            <p class="mt-5 text-base leading-relaxed text-gray-600 line-clamp-4">
-
-                                {{ $leader->bio }}
-
-                            </p>
-
-                        @endif
-
-                    </div>
+                    </h3>
 
                 </div>
 
-            @endforeach
+                <!-- Leaders Grid -->
+                <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+
+                    @foreach($groupedLeaders as $leader)
+
+                        <div class="overflow-hidden transition-all duration-500 bg-white border border-gray-100 shadow-xl group rounded-3xl hover:-translate-y-2 hover:shadow-2xl">
+
+                            <!-- Leader Image -->
+                            <div class="relative overflow-hidden">
+
+                                @if($leader->image)
+
+                                    <img
+                                        src="{{ Storage::url($leader->image) }}"
+                                        alt="{{ $leader->name }}"
+                                        class="object-cover object-top w-full h-[500px] transition duration-700 group-hover:scale-105"
+                                    >
+
+                                @else
+
+                                    <div class="flex items-center justify-center h-[500px] bg-gradient-to-br from-violet-200 to-violet-100">
+
+                                        <svg
+                                            class="w-24 h-24 text-violet-400"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24">
+
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="1.5"
+                                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"
+                                            />
+
+                                        </svg>
+
+                                    </div>
+
+                                @endif
+
+                                <!-- Overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent"></div>
+
+                                <!-- Position Badge -->
+                                <div class="absolute bottom-5 left-5">
+
+                                    <span class="inline-flex items-center px-5 py-2 text-sm font-bold tracking-wide text-white rounded-full shadow-lg bg-violet-700/95 backdrop-blur-sm">
+
+                                        {{ $leader->position }}
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Content -->
+                            <div class="flex flex-col p-8 min-h-[220px]">
+
+                                <h3 class="text-3xl font-extrabold tracking-tight text-gray-900">
+
+                                    {{ $leader->name }}
+
+                                </h3>
+
+                                @if($leader->bio)
+
+                                    <p class="mt-5 text-base leading-relaxed text-gray-600 line-clamp-4">
+
+                                        {{ $leader->bio }}
+
+                                    </p>
+
+                                @endif
+
+                            </div>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        @endif
+
+    @endforeach
+
+</div>
 
         </div>
 

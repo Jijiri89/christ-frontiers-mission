@@ -4,7 +4,7 @@
 
 <div class="px-4 py-10 mx-auto max-w-7xl">
 
-    <div class="flex items-center justify-between mb-8">
+    <div class="flex flex-col gap-4 mb-8 sm:flex-row sm:items-center sm:justify-between">
 
         <div>
 
@@ -20,7 +20,7 @@
 
         <a href="{{ route('dashboard.leaders.create') }}"
            wire:navigate
-           class="inline-flex items-center px-6 py-3 font-bold text-white rounded-2xl bg-violet-700 hover:bg-violet-800">
+           class="inline-flex items-center justify-center px-6 py-3 font-bold text-white transition rounded-2xl bg-violet-700 hover:bg-violet-800">
 
             Add Leader
 
@@ -40,96 +40,146 @@
 
     <div class="overflow-hidden bg-white shadow-2xl rounded-3xl">
 
-        <table class="min-w-full">
+        <!-- Responsive Table Wrapper -->
+        <div class="overflow-x-auto">
 
-            <thead class="text-white bg-violet-900">
+            <table class="min-w-full">
 
-                <tr>
+                <thead class="text-white bg-violet-900">
 
-                    <th class="px-6 py-4 text-left">
-                        Image
-                    </th>
+                    <tr>
 
-                    <th class="px-6 py-4 text-left">
-                        Name
-                    </th>
+                        <th class="px-4 py-4 text-sm font-bold tracking-wide text-left uppercase whitespace-nowrap">
 
-                    <th class="px-6 py-4 text-left">
-                        Position
-                    </th>
+                            Image
 
-                    <th class="px-6 py-4 text-right">
-                        Actions
-                    </th>
+                        </th>
 
-                </tr>
+                        <th class="px-4 py-4 text-sm font-bold tracking-wide text-left uppercase whitespace-nowrap">
 
-            </thead>
+                            Name
 
-            <tbody>
+                        </th>
 
-                @foreach($leaders as $leader)
+                        <th class="px-4 py-4 text-sm font-bold tracking-wide text-left uppercase whitespace-nowrap">
 
-                    <tr class="border-b">
+                            Ministry
 
-                        <td class="px-6 py-4">
+                        </th>
 
-                            @if($leader->image)
+                        <th class="px-4 py-4 text-sm font-bold tracking-wide text-left uppercase whitespace-nowrap">
 
-                                <img
-                                    src="{{ Storage::url($leader->image) }}"
-                                    class="object-cover w-16 h-16 rounded-2xl"
-                                >
+                            Position
 
-                            @endif
+                        </th>
 
-                        </td>
+                        <th class="px-4 py-4 text-sm font-bold tracking-wide text-right uppercase whitespace-nowrap">
 
-                        <td class="px-6 py-4 font-semibold">
+                            Actions
 
-                            {{ $leader->name }}
-
-                        </td>
-
-                        <td class="px-6 py-4 text-gray-600">
-
-                            {{ $leader->position }}
-
-                        </td>
-
-                        <td class="px-6 py-4 text-right">
-
-                            <div class="flex justify-end gap-3">
-
-                                <a href="{{ route('dashboard.leaders.edit', $leader) }}"
-                                   wire:navigate
-                                   class="px-4 py-2 text-white rounded-xl bg-violet-700 hover:bg-violet-800">
-
-                                    Edit
-
-                                </a>
-
-                                <button
-                                    wire:click="delete({{ $leader->id }})"
-                                    wire:confirm="Delete this leader?"
-                                    class="px-4 py-2 text-white bg-red-600 rounded-xl hover:bg-red-700"
-                                >
-
-                                    Delete
-
-                                </button>
-
-                            </div>
-
-                        </td>
+                        </th>
 
                     </tr>
 
-                @endforeach
+                </thead>
 
-            </tbody>
+                <tbody>
 
-        </table>
+                    @foreach($leaders as $leader)
+
+                        <tr class="transition border-b hover:bg-gray-50">
+
+                            <!-- Image -->
+                            <td class="px-4 py-5 whitespace-nowrap">
+
+                                @if($leader->image)
+
+                                    <img
+                                        src="{{ Storage::url($leader->image) }}"
+                                        class="object-cover w-16 h-16 rounded-2xl"
+                                    >
+
+                                @else
+
+                                    <div class="flex items-center justify-center w-16 h-16 text-sm font-bold text-gray-400 bg-gray-100 rounded-2xl">
+
+                                        N/A
+
+                                    </div>
+
+                                @endif
+
+                            </td>
+
+                            <!-- Name -->
+                            <td class="px-4 py-5 whitespace-nowrap">
+
+                                <div class="font-bold text-violet-900">
+
+                                    {{ $leader->name }}
+
+                                </div>
+
+                            </td>
+
+                            <!-- Ministry -->
+                            <td class="px-4 py-5 whitespace-nowrap">
+
+                                <span class="inline-flex items-center px-3 py-1 text-xs font-bold rounded-full bg-violet-100 text-violet-700">
+
+                                    {{ $leader->ministry }}
+
+                                </span>
+
+                            </td>
+
+                            <!-- Position -->
+                            <td class="px-4 py-5">
+
+                                <div class="text-gray-600 min-w-[180px]">
+
+                                    {{ $leader->position }}
+
+                                </div>
+
+                            </td>
+
+                            <!-- Actions -->
+                            <td class="px-4 py-5 text-right whitespace-nowrap">
+
+                                <div class="flex justify-end gap-2">
+
+                                    <a href="{{ route('dashboard.leaders.edit', $leader) }}"
+                                       wire:navigate
+                                       class="px-4 py-2 text-sm font-bold text-white transition rounded-xl bg-violet-700 hover:bg-violet-800">
+
+                                        Edit
+
+                                    </a>
+
+                                    <button
+                                        wire:click="delete({{ $leader->id }})"
+                                        wire:confirm="Delete this leader?"
+                                        class="px-4 py-2 text-sm font-bold text-white transition bg-red-600 rounded-xl hover:bg-red-700"
+                                    >
+
+                                        Delete
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    @endforeach
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 

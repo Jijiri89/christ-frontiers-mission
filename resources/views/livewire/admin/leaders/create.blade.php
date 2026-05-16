@@ -7,11 +7,15 @@
     <div class="mb-8">
 
         <h1 class="text-3xl font-extrabold text-violet-900">
+
             Add Leader
+
         </h1>
 
         <p class="mt-2 text-gray-600">
+
             Create a new leadership profile.
+
         </p>
 
     </div>
@@ -20,21 +24,27 @@
 
         <div class="overflow-hidden bg-white shadow-2xl rounded-3xl">
 
+            <!-- Header -->
             <div class="px-8 py-6 text-white bg-gradient-to-r from-violet-700 to-violet-900">
 
                 <h2 class="text-xl font-bold">
+
                     Leader Information
+
                 </h2>
 
             </div>
 
+            <!-- Body -->
             <div class="p-8 space-y-6">
 
                 <!-- Name -->
                 <div>
 
                     <label class="block mb-2 font-bold text-gray-700">
+
                         Name
+
                     </label>
 
                     <input
@@ -43,13 +53,72 @@
                         class="w-full border-gray-300 rounded-2xl focus:border-violet-500 focus:ring-violet-500"
                     >
 
+                    @error('name')
+
+                        <p class="mt-2 text-sm text-red-600">
+
+                            {{ $message }}
+
+                        </p>
+
+                    @enderror
+
+                </div>
+
+                <!-- Ministry -->
+                <div>
+
+                    <label class="block mb-2 font-bold text-gray-700">
+
+                        Ministry
+
+                    </label>
+
+                    <select
+                        wire:model="ministry"
+                        class="w-full border-gray-300 rounded-2xl focus:border-violet-500 focus:ring-violet-500">
+
+                        <option value="">
+                            Select Ministry
+                        </option>
+
+                        <option value="National Presbytery">
+                            National Presbytery
+                        </option>
+
+                        <option value="Women Ministry">
+                            Women Ministry
+                        </option>
+
+                        <option value="Children Ministry">
+                            Children Ministry
+                        </option>
+
+                        <option value="Youth Ministry">
+                            Youth Ministry
+                        </option>
+
+                    </select>
+
+                    @error('ministry')
+
+                        <p class="mt-2 text-sm text-red-600">
+
+                            {{ $message }}
+
+                        </p>
+
+                    @enderror
+
                 </div>
 
                 <!-- Position -->
                 <div>
 
                     <label class="block mb-2 font-bold text-gray-700">
+
                         Position
+
                     </label>
 
                     <input
@@ -58,13 +127,25 @@
                         class="w-full border-gray-300 rounded-2xl focus:border-violet-500 focus:ring-violet-500"
                     >
 
+                    @error('position')
+
+                        <p class="mt-2 text-sm text-red-600">
+
+                            {{ $message }}
+
+                        </p>
+
+                    @enderror
+
                 </div>
 
                 <!-- Bio -->
                 <div>
 
                     <label class="block mb-2 font-bold text-gray-700">
+
                         Biography
+
                     </label>
 
                     <textarea
@@ -73,13 +154,25 @@
                         class="w-full border-gray-300 rounded-2xl focus:border-violet-500 focus:ring-violet-500"
                     ></textarea>
 
+                    @error('bio')
+
+                        <p class="mt-2 text-sm text-red-600">
+
+                            {{ $message }}
+
+                        </p>
+
+                    @enderror
+
                 </div>
 
-                <!-- Sort -->
+                <!-- Sort Order -->
                 <div>
 
                     <label class="block mb-2 font-bold text-gray-700">
+
                         Sort Order
+
                     </label>
 
                     <input
@@ -87,6 +180,16 @@
                         wire:model="sort_order"
                         class="w-full border-gray-300 rounded-2xl focus:border-violet-500 focus:ring-violet-500"
                     >
+
+                    @error('sort_order')
+
+                        <p class="mt-2 text-sm text-red-600">
+
+                            {{ $message }}
+
+                        </p>
+
+                    @enderror
 
                 </div>
 
@@ -115,7 +218,9 @@
                 <div>
 
                     <label class="block mb-2 font-bold text-gray-700">
+
                         Upload Image
+
                     </label>
 
                     <input
@@ -124,11 +229,22 @@
                         class="w-full border-gray-300 rounded-2xl"
                     >
 
+                    @error('newImage')
+
+                        <p class="mt-2 text-sm text-red-600">
+
+                            {{ $message }}
+
+                        </p>
+
+                    @enderror
+
+                    <!-- Preview -->
                     @if($newImage)
 
                         <img
                             src="{{ $newImage->temporaryUrl() }}"
-                            class="object-cover w-64 mt-6 h-72 rounded-3xl"
+                            class="object-cover w-64 mt-6 shadow-xl h-72 rounded-3xl"
                         >
 
                     @endif
@@ -139,6 +255,7 @@
 
         </div>
 
+        <!-- Submit -->
         <div class="flex justify-end">
 
             <button

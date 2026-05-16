@@ -132,6 +132,51 @@
                 <!-- Position -->
                 <div>
 
+                    <!-- Ministry -->
+<div>
+
+    <label class="block mb-2 text-sm font-bold text-gray-700">
+        Ministry
+    </label>
+
+    <select
+        wire:model="ministry"
+        class="w-full border-gray-300 shadow-sm rounded-2xl focus:border-violet-500 focus:ring-violet-500">
+
+        <option value="">
+            Select Ministry
+        </option>
+
+        <option value="National Presbytery">
+            National Presbytery
+        </option>
+
+        <option value="Women Ministry">
+            Women Ministry
+        </option>
+
+        <option value="Children Ministry">
+            Children Ministry
+        </option>
+
+        <option value="Youth Ministry">
+            Youth Ministry
+        </option>
+
+    </select>
+
+    @error('ministry')
+
+        <p class="mt-2 text-sm text-red-600">
+
+            {{ $message }}
+
+        </p>
+
+    @enderror
+
+</div>
+
                     <label class="block mb-2 text-sm font-bold text-gray-700">
                         Position
                     </label>

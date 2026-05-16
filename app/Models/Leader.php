@@ -13,5 +13,6 @@ class Leader extends Model
     'image',
     'sort_order',
     'is_active',
+    'ministry',
 ];
 }

@@ -15,6 +15,7 @@ class Edit extends Component
     public Leader $leader;
 
     public $name;
+    public $ministry;
     public $position;
     public $bio;
     public $image;
@@ -40,6 +41,7 @@ class Edit extends Component
         $this->sort_order = $leader->sort_order;
 
         $this->is_active = $leader->is_active;
+        $this->ministry = $leader->ministry;
     }
 
     public function update()
@@ -55,6 +57,7 @@ class Edit extends Component
             'sort_order' => 'nullable|integer',
 
             'newImage' => 'nullable|image|max:2048',
+            'ministry' => 'required|string|max:255',
 
         ]);
 
@@ -102,6 +105,7 @@ class Edit extends Component
             'sort_order' => $this->sort_order,
 
             'is_active' => $this->is_active,
+            'ministry' => $this->ministry,
 
         ]);
 
@@ -109,6 +113,7 @@ class Edit extends Component
             'success',
             'Leader updated successfully.'
         );
+        return redirect()->route('dashboard.leaders');
     }
 
     public function render()
