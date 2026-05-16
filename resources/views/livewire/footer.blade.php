@@ -6,7 +6,8 @@ new class extends Component {
     //
 }; ?>
 
-@php
+<div>
+    @php
     use Illuminate\Support\Facades\Storage;
 
     $settings = \App\Models\Setting::first();
@@ -398,4 +399,5 @@ new class extends Component {
 
     </div>
 
+</div>
 </div>
