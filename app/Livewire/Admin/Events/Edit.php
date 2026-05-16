@@ -122,6 +122,7 @@ class Edit extends Component
             'success',
             'Event updated successfully.'
         );
+         return redirect()->route('dashboard.events');
     }
 
     public function render()

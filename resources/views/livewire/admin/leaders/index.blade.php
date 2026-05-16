@@ -1,9 +1,9 @@
-
-<div class="px-4 py-10 mx-auto max-w-7xl">
-    @php
+@php
     use Illuminate\Support\Facades\Storage;
 @endphp
 
+<div class="px-4 py-10 mx-auto max-w-7xl">
+    
 
     <div class="flex flex-col gap-4 mb-8 sm:flex-row sm:items-center sm:justify-between">
 

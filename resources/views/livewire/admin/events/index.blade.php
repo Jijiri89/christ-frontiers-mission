@@ -1,11 +1,12 @@
 
 
-<div class="px-4 py-10 mx-auto max-w-7xl">
+
     @php
     use Illuminate\Support\Facades\Storage;
 @endphp
 
-    <!-- Header -->
+   <div>
+     <!-- Header -->
     <div class="flex items-center justify-between mb-10">
 
         <div>
@@ -232,4 +233,4 @@
 
     </div>
 
-</div>
+   </div>

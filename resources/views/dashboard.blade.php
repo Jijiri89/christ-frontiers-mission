@@ -1,4 +1,4 @@
-<div>
+
     @php
     use Illuminate\Support\Facades\Storage;
 @endphp
@@ -363,4 +363,3 @@
 @endauth
 
 </x-app-layout>
-</div>

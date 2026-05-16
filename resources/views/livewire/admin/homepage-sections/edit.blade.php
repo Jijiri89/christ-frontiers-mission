@@ -1,4 +1,4 @@
-<div>
+
     @php
     use Illuminate\Support\Facades\Storage;
 @endphp
@@ -345,5 +345,4 @@
 
     </form>
 
-</div>
 </div>

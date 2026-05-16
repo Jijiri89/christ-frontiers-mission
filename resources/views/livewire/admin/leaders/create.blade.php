@@ -1,8 +1,9 @@
 
-<div class="max-w-4xl px-4 py-10 mx-auto">
-    @php
+  @php
     use Illuminate\Support\Facades\Storage;
 @endphp
+<div class="max-w-4xl px-4 py-10 mx-auto">
+  
 
 
     <div class="mb-8">

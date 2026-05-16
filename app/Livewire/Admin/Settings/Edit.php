@@ -110,6 +110,7 @@ class Edit extends Component
             'success',
             'Settings updated successfully.'
         );
+         return redirect()->route('dashboard.settings');
     }
 
     public function render()
