@@ -2,7 +2,8 @@
     use Illuminate\Support\Facades\Storage;
 @endphp
 
-@if($about)
+<div>
+    @if($about)
 
 <section class="relative py-24 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
 
@@ -113,3 +114,4 @@
 </section>
 
 @endif
+</div>

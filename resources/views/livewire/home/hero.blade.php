@@ -1,4 +1,5 @@
-@if($hero)
+<div>
+    @if($hero)
 
 <section class="relative overflow-hidden bg-gradient-to-r from-violet-700 via-violet-800 to-violet-900">
 
@@ -134,3 +135,4 @@
 </section>
 
 @endif
+</div>
