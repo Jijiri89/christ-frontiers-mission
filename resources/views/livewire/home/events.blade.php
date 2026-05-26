@@ -92,11 +92,7 @@
 
                                 @if($event->image)
 
-                                    <img
-                                        src="{{ Storage::url($event->image) }}"
-                                        alt="{{ $event->title }}"
-                                        class="object-cover w-full transition duration-700 h-72 group-hover:scale-105"
-                                    >
+                                   
 
                                 @else
 

@@ -183,17 +183,21 @@
                         class="w-full border-gray-300 rounded-2xl"
                     >
 
-                    <!-- Preview -->
-                    @if($newLogo)
+                   @if($newLogo)
 
-                        <div class="mt-6">
+    <div class="mt-6">
 
-                            <img
-                                src="{{ $newLogo->temporaryUrl() }}"
-                                class="object-contain w-40 h-40 p-4 bg-white shadow-xl rounded-3xl"
-                            >
+        <div class="flex items-center justify-center w-40 h-40 p-4 bg-gray-100 shadow-xl rounded-3xl">
 
-                        </div>
+            <span class="text-sm font-semibold text-gray-600">
+
+                New logo selected
+
+            </span>
+
+        </div>
+
+    </div>
 
                     @elseif($logo)
 

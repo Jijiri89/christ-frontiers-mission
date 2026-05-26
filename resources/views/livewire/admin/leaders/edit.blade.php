@@ -298,18 +298,7 @@
                     <!-- New Preview -->
                     @if($newImage)
 
-                        <div class="mt-6">
-
-                            <p class="mb-3 text-sm font-semibold text-gray-600">
-                                New Image Preview
-                            </p>
-
-                            <img
-                                src="{{ $newImage->temporaryUrl() }}"
-                                class="object-cover w-64 shadow-xl h-72 rounded-3xl"
-                            >
-
-                        </div>
+                        
 
                     <!-- Current Image -->
                     @elseif($image)

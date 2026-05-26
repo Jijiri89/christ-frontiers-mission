@@ -241,15 +241,7 @@
 
                     @enderror
 
-                    <!-- Preview -->
-                    @if($newImage)
-
-                        <img
-                            src="{{ $newImage->temporaryUrl() }}"
-                            class="object-cover w-64 mt-6 shadow-xl h-72 rounded-3xl"
-                        >
-
-                    @endif
+                    
 
                 </div>
 

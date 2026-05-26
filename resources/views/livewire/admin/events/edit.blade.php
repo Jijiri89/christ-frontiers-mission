@@ -203,14 +203,7 @@
                     <!-- Preview -->
                     @if($newImage)
 
-                        <div class="mt-6">
-
-                            <img
-                                src="{{ $newImage->temporaryUrl() }}"
-                                class="object-cover w-full max-w-md shadow-xl rounded-3xl"
-                            >
-
-                        </div>
+                       
 
                     @elseif($image)
 
